@@ -37,6 +37,32 @@
 	    </div>
 	</header>
 
+	<main class="main">
+	    <!-- Current Weather Card -->
+	    <section class="current-card">
+	        <div class="current-left">
+	            <div class="city-name skeleton" id="city-name">—</div>
+	            <div class="local-time skeleton" id="local-time">--:-- --</div>
+	            <div class="weather-desc skeleton" id="weather-desc">—</div>
+	        </div>
+	        <div class="current-right">
+	            <div class="weather-icon skeleton" id="weather-icon">—</div>
+	            <div class="temperature skeleton" id="temperature">--°</div>
+	            <div class="current-meta">
+	                <div class="meta-item skeleton" id="humidity">💧 --%</div>
+	                <div class="meta-item skeleton" id="windspeed">💨 -- km/h</div>
+	            </div>
+	        </div>
+	    </section>
+	    <!-- 7-Day Forecast -->
+	    <section class="forecast-section">
+	        <h2 class="section-title">7-Day Forecast</h2>
+	        <div class="forecast-row" id="forecast-row"></div>
+	    </section>
+	</main>
+	
+	<script src="app.js"></script>
+
 	
 </body>
 </html>
