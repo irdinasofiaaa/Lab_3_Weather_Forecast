@@ -9,7 +9,34 @@
 </head>
 <body>
 
-	
+	<div id="error" class="error hidden">
+		<span id="error-message">⚠️ Network Error</span>
+		<button id="retry" onclick="retrySearch()">🔄️ Retry</button>
+		<button  onclick="dismissError()">✕</button>
+	</div>
+
+  	<!-- Header -->
+	<header class="header">
+	    <div class="header-inner">
+	        <div class="logo">
+	            <span class="logo-icon">◈</span>
+	            <span class="logo-text">WeatherNow</span>
+	        </div>
+	        <div class="search-wrap">
+	            <input type="text" id="city-input" class="search-input" placeholder="Search city…" autocomplete="off" />
+	            <button id="search-btn" class="search-btn" onclick="triggerSearch()">Search</button>
+	        </div>
+	        <div class="unit-toggle">
+	            <button id="btn-c" class="unit-btn active" onclick="setUnit('C')">°C</button>
+	            <button id="btn-f" class="unit-btn" onclick="setUnit('F')">°F</button>
+	        </div>
+	    </div>
+	    <div id="recent-wrap" class="recent-wrap hidden">
+	        <span class="recent-label">Recent:</span>
+	        <div id="recent-chips" class="chips"></div>
+	    </div>
+	</header>
+
 	
 </body>
 </html>
