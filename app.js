@@ -60,6 +60,43 @@ const WEATHER_CODES = {
 };
 
 
+/* ──────────────────────────────────────────
+   APPLY WEATHER THEME
+   Removes existing weather class, adds new one,
+   updates the badge label.
+────────────────────────────────────────── */
+function applyWeatherTheme(weatherCode) {
+  const entry = WEATHER_CODES[weatherCode] || { theme: 'w-clear' };
+  const theme = entry.theme;
+
+  /* Remove all old theme classes then add the new one */
+  document.body.classList.remove(...ALL_THEMES);
+  document.body.classList.add(theme);
+
+  /* Update the badge in the corner */
+  const badge = document.getElementById('weather-badge');
+  if (badge) {
+    badge.textContent = THEME_LABELS[theme] || theme;
+  }
+}
+
+/* ── Debounce ── */
+function debounce(fn, delay) {
+  let timerId;
+  return function (...args) {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+/* ── Temperature helpers ── */
+function toF(celsius) { return Math.round((celsius * 9 / 5) + 32); }
+function formatTemp(celsius) {
+  return currentUnit === 'C'
+    ? `${Math.round(celsius)}°C`
+    : `${toF(celsius)}°F`;
+}
+
 /* ─────────────────────────────────────────────
    ERROR BANNER
 ───────────────────────────────────────────── */
