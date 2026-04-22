@@ -369,3 +369,169 @@ body::after {
   flex-direction: column;
   gap: 32px;
 }
+
+/* ── Current Weather Card ── */
+.current-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.6s ease;
+  transition: background 1.2s ease, border-color 1.2s ease, box-shadow 1.2s ease;
+  box-shadow: 0 0 60px var(--glow);
+}
+
+/* Glow orb top-right */
+.current-card::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, var(--glow), transparent 70%);
+  pointer-events: none;
+  transition: background 1.2s ease;
+}
+
+.current-left { display: flex; flex-direction: column; gap: 10px; }
+
+.city-name {
+  font-family: var(--font-disp);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1;
+  min-width: 220px; min-height: 48px;
+  transition: color 1.2s ease;
+}
+.local-time {
+  font-size: 0.85rem;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  min-width: 140px; min-height: 20px;
+  transition: color 1.2s ease;
+}
+.weather-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  min-width: 180px; min-height: 22px;
+  transition: color 1.2s ease;
+}
+
+.current-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.weather-icon {
+  font-size: 3.5rem;
+  line-height: 1;
+  min-width: 60px; min-height: 58px;
+}
+.temperature {
+  font-family: var(--font-disp);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 600;
+  color: var(--text);
+  min-width: 120px; min-height: 64px;
+  text-align: right;
+  transition: color 1.2s ease;
+}
+.current-meta { display: flex; gap: 16px; }
+.meta-item {
+  font-size: 0.8rem;
+  color: var(--muted);
+  min-width: 80px; min-height: 18px;
+  transition: color 1.2s ease;
+}
+
+/* ── Forecast ── */
+.section-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  transition: color 1.2s ease;
+}
+.forecast-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+.forecast-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s, border-color 0.2s, background 1.2s ease;
+  animation: fadeUp 0.5s ease both;
+}
+.forecast-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+.forecast-day {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  min-width: 34px; min-height: 14px;
+  transition: color 1.2s ease;
+}
+.forecast-icon { font-size: 1.6rem; min-width: 32px; min-height: 32px; }
+.forecast-high {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 600;
+  min-width: 34px; min-height: 18px;
+  transition: color 1.2s ease;
+}
+.forecast-low {
+  font-size: 0.78rem;
+  color: var(--muted);
+  min-width: 34px; min-height: 16px;
+  transition: color 1.2s ease;
+}
+
+/* ── Skeleton ── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--skeleton-a) 25%, var(--skeleton-b) 50%, var(--skeleton-a) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+  color: transparent !important;
+  user-select: none;
+}
+.skeleton * { visibility: hidden; }
+
+/* ── Animations ── */
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeUp  { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── Responsive ── */
+@media (max-width: 780px) {
+  .forecast-row { grid-template-columns: repeat(4, 1fr); }
+  .current-card { flex-direction: column; align-items: flex-start; }
+  .current-right { align-items: flex-start; }
+}
+@media (max-width: 520px) {
+  .header { padding: 16px; }
+  .main   { padding: 20px 16px 60px; }
+  .forecast-row { grid-template-columns: repeat(3, 1fr); }
+}
